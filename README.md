@@ -5,9 +5,9 @@
 ---
 
 ## 🎓 Informasi Proyek
-- **Mata Kuliah**: React Lanjutan
+- **Pelatihan**: React Lanjutan
 - **Keperluan**: Ujian Tengah Semester (UTS)
-- **Nama Mahasiswa**: Alwan
+- **Nama**: Alwan
 - **Instruktur**: Eka Rahma
 
 ---
