@@ -44,7 +44,7 @@ export default function DetailModal({ mhs, onClose }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl bg-surface-800/50 border border-white/[0.05]">
               <div className="flex items-center gap-2 mb-1.5">
                 <GraduationCap className="w-4 h-4 text-primary-400" />
