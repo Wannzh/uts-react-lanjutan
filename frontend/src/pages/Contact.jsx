@@ -39,7 +39,7 @@ export default function Contact() {
             
             <div>
               <h2 className="text-2xl font-bold text-white mb-2">Alwan</h2>
-              <p className="text-primary-400 font-medium tracking-wide text-sm uppercase">Frontend Developer</p>
+              <p className="text-primary-400 font-medium tracking-wide text-sm uppercase">Fullstack Developer</p>
             </div>
             
             <div className="flex items-center gap-4 pt-2">

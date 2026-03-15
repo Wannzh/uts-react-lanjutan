@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, ArrowRight, Loader2, Eye, EyeOff, Sparkles } from "lucide-react";
+import { toast } from "react-hot-toast";
 import api from "../service/api";
 
 export default function Login() {
@@ -24,9 +25,11 @@ export default function Login() {
     try {
       const res = await api.post("/api/auth/login", form);
       if (res.data.user) {
+        toast.success("Berhasil masuk!");
         navigate("/");
       }
     } catch (err) {
+      toast.error(err.response?.data?.message || "Terjadi kesalahan saat login.");
       setError(err.response?.data?.message || "Terjadi kesalahan saat login.");
     } finally {
       setLoading(false);
@@ -64,7 +67,7 @@ export default function Login() {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             {/* Gmail */}
             <div className={`group relative animate-fade-in delay-100`}>
               <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "gmail" ? "text-primary-400" : "text-surface-400"}`}>
@@ -82,7 +85,7 @@ export default function Login() {
                   onBlur={() => setFocusedField("")}
                   placeholder="nama@email.com"
                   required
-                  className="w-full px-4 py-3.5 bg-transparent text-white placeholder-surface-500 outline-none text-sm"
+                  className="w-full px-4 py-3 bg-transparent text-white placeholder-surface-500 outline-none text-sm"
                 />
               </div>
             </div>
@@ -104,7 +107,7 @@ export default function Login() {
                   onBlur={() => setFocusedField("")}
                   placeholder="Masukkan password"
                   required
-                  className="w-full px-4 py-3.5 bg-transparent text-white placeholder-surface-500 outline-none text-sm"
+                  className="w-full px-4 py-3 bg-transparent text-white placeholder-surface-500 outline-none text-sm"
                 />
                 <button
                   type="button"
@@ -122,7 +125,7 @@ export default function Login() {
                 type="submit"
                 id="login-submit"
                 disabled={loading}
-                className="w-full py-3.5 px-6 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 transition-all duration-300 shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 px-6 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 transition-all duration-300 shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2 cursor-pointer"
               >
                 {loading ? (
                   <>

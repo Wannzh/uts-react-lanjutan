@@ -1,6 +1,6 @@
-import { Edit2, Trash2, CheckCircle2, XCircle, LayoutGrid, List } from "lucide-react";
+import { Edit2, Trash2, CheckCircle2, XCircle, LayoutGrid, Eye } from "lucide-react";
 
-export default function MahasiswaTable({ mahasiswa, onEdit, onDelete, onToggleStatus, loading }) {
+export default function MahasiswaTable({ mahasiswa, onDetail, onEdit, onDelete, onToggleStatus, loading }) {
   if (loading) {
     return (
       <div className="w-full h-64 flex items-center justify-center">
@@ -77,6 +77,13 @@ export default function MahasiswaTable({ mahasiswa, onEdit, onDelete, onToggleSt
               </td>
               <td className="px-6 py-4 text-right">
                 <div className="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={() => onDetail(mhs)}
+                    className="p-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 rounded-lg transition-colors border border-blue-500/20 hover:border-blue-500/30"
+                    title="Detail Mahasiswa"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
                   <button
                     onClick={() => onEdit(mhs)}
                     className="p-2 bg-surface-800 hover:bg-surface-700 text-surface-300 hover:text-white rounded-lg transition-colors border border-white/[0.05] hover:border-white/[0.1]"

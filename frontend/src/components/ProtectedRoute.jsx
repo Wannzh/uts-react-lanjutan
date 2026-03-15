@@ -4,9 +4,9 @@ export default function ProtectedRoute({ children }) {
   // Grab the user object provided by Layout
   const { user } = useOutletContext();
 
-  // If user is not authenticated, redirect to login
+  // If user is not authenticated, redirect to forbidden (403)
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/forbidden" replace />;
   }
 
   // Otherwise, render the protected component

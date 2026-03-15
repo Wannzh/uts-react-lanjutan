@@ -7,6 +7,8 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Layout from "../components/Layout";
 import ProtectedRoute from "../components/ProtectedRoute";
+import Forbidden from "../pages/Forbidden";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -56,8 +58,12 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/forbidden",
+    element: <Forbidden />,
+  },
+  {
     path: "*",
-    element: <Navigate to="/" replace />,
+    element: <NotFound />,
   },
 ]);
 

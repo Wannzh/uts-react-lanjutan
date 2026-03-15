@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { Plus, Search } from "lucide-react";
 import api from "../service/api";
+import { toast } from "react-hot-toast";
 import MahasiswaTable from "../components/MahasiswaTable";
 import MahasiswaForm from "../components/MahasiswaForm";
 import DeleteModal from "../components/DeleteModal";
+import DetailModal from "../components/DetailModal";
 
 export default function MahasiswaList() {
   const [mahasiswa, setMahasiswa] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  
+  const [showDetail, setShowDetail] = useState(false);
+  const [detailData, setDetailData] = useState(null);
   
   const [showForm, setShowForm] = useState(false);
   const [editData, setEditData] = useState(null);
@@ -41,6 +46,12 @@ export default function MahasiswaList() {
     m.nim.includes(searchQuery)
   );
 
+  // Handlers for Detail
+  const handleOpenDetail = (data) => {
+    setDetailData(data);
+    setShowDetail(true);
+  };
+
   // Handlers for Form (Add/Edit)
   const handleOpenAdd = () => {
     setEditData(null);
@@ -57,14 +68,16 @@ export default function MahasiswaList() {
     try {
       if (editData) {
         await api.put(`/api/mahasiswa/${editData.id}`, formData);
+        toast.success("Mahasiswa berhasil diperbarui!");
       } else {
         await api.post("/api/mahasiswa", formData);
+        toast.success("Mahasiswa berhasil ditambahkan!");
       }
       setShowForm(false);
       fetchMahasiswa();
     } catch (error) {
       console.error("Failed to submit form", error);
-      alert(error.response?.data?.message || "Terjadi kesalahan.");
+      toast.error(error.response?.data?.message || "Terjadi kesalahan.");
     } finally {
       setSubmitting(false);
     }
@@ -80,11 +93,12 @@ export default function MahasiswaList() {
     setSubmitting(true);
     try {
       await api.delete(`/api/mahasiswa/${id}`);
+      toast.success("Mahasiswa berhasil dihapus!");
       setShowDelete(false);
       fetchMahasiswa();
     } catch (error) {
       console.error("Failed to delete data", error);
-      alert(error.response?.data?.message || "Terjadi kesalahan.");
+      toast.error(error.response?.data?.message || "Terjadi kesalahan.");
     } finally {
       setSubmitting(false);
     }
@@ -97,8 +111,10 @@ export default function MahasiswaList() {
       setMahasiswa(prev => prev.map(m => m.id === id ? { ...m, isactive: !currentStatus } : m));
       
       await api.patch(`/api/mahasiswa/${id}/status`, { isActive: !currentStatus });
+      toast.success(`Status berhasil diubah menjadi ${!currentStatus ? 'Active' : 'Inactive'}!`);
     } catch (error) {
       console.error("Failed to toggle status", error);
+      toast.error("Gagal mengubah status!");
       // Revert if failed
       fetchMahasiswa();
     }
@@ -137,12 +153,20 @@ export default function MahasiswaList() {
       <MahasiswaTable 
         mahasiswa={filteredData}
         loading={loading}
+        onDetail={handleOpenDetail}
         onEdit={handleOpenEdit}
         onDelete={handleOpenDelete}
         onToggleStatus={handleToggleStatus}
       />
 
       {/* Modals */}
+      {showDetail && (
+        <DetailModal 
+          mhs={detailData}
+          onClose={() => setShowDetail(false)}
+        />
+      )}
+
       {showForm && (
         <MahasiswaForm 
           mhs={editData} 

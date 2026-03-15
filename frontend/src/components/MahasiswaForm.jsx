@@ -9,6 +9,7 @@ export default function MahasiswaForm({ mhs, onClose, onSubmit, submitting }) {
     nim: "",
     jurusan: "Teknik Informatika",
     ipk: "",
+    isactive: true,
   });
 
   useEffect(() => {
@@ -18,13 +19,15 @@ export default function MahasiswaForm({ mhs, onClose, onSubmit, submitting }) {
         nim: mhs.nim || "",
         jurusan: mhs.jurusan || "Teknik Informatika",
         ipk: mhs.ipk || "",
+        isactive: mhs.isactive !== undefined ? mhs.isactive : true,
       });
     }
   }, [mhs]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const finalValue = type === "checkbox" ? e.target.checked : value;
+    setForm((prev) => ({ ...prev, [name]: finalValue === "true" ? true : finalValue === "false" ? false : finalValue }));
   };
 
   const handleSubmit = (e) => {
@@ -32,6 +35,7 @@ export default function MahasiswaForm({ mhs, onClose, onSubmit, submitting }) {
     onSubmit({
       ...form,
       ipk: parseFloat(form.ipk),
+      isActive: form.isactive // Mapping to backend property name expected
     });
   };
 
@@ -67,7 +71,7 @@ export default function MahasiswaForm({ mhs, onClose, onSubmit, submitting }) {
         </div>
 
         {/* Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+        <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-5">
           {/* Name */}
           <div>
             <label className="text-xs font-medium text-surface-400 mb-1.5 block">Nama Lengkap</label>
@@ -138,6 +142,23 @@ export default function MahasiswaForm({ mhs, onClose, onSubmit, submitting }) {
                 required
                 className="w-full px-3 py-3 bg-transparent text-white placeholder-surface-600 outline-none text-sm"
               />
+            </div>
+          </div>
+
+          {/* Status */}
+          <div>
+            <label className="text-xs font-medium text-surface-400 mb-1.5 block">Status Mahasiswa</label>
+            <div className="relative flex items-center rounded-xl border border-white/[0.08] bg-white/[0.02] focus-within:border-primary-500/50 focus-within:bg-primary-500/5 transition-all pr-4">
+              <div className={`w-2 h-2 rounded-full ml-5 ${form.isactive ? "bg-emerald-500" : "bg-red-500"}`} />
+              <select
+                name="isactive"
+                value={form.isactive}
+                onChange={handleChange}
+                className="w-full px-3 py-3 bg-transparent text-white outline-none text-sm appearance-none"
+              >
+                <option value={true} className="bg-surface-800">Active</option>
+                <option value={false} className="bg-surface-800">Inactive</option>
+              </select>
             </div>
           </div>
 
