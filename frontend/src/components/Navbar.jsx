@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Users, LayoutDashboard, Info, Mail, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
+import Logo from "./Logo";
 import api from "../service/api";
 
 export default function Navbar({ user, setUser }) {
@@ -30,12 +31,9 @@ export default function Navbar({ user, setUser }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20">
-              <Users className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-white font-bold tracking-wide">MhsDev</span>
-          </div>
+          <Link to="/" className="flex-shrink-0">
+            <Logo className="w-8 h-8" />
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
