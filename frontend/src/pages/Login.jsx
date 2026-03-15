@@ -5,7 +5,7 @@ import api from "../service/api";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ gmail: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -65,20 +65,20 @@ export default function Login() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email */}
+            {/* Gmail */}
             <div className={`group relative animate-fade-in delay-100`}>
-              <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "email" ? "text-primary-400" : "text-surface-400"}`}>
+              <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "gmail" ? "text-primary-400" : "text-surface-400"}`}>
                 Email
               </label>
-              <div className={`relative flex items-center rounded-xl border transition-all duration-300 ${focusedField === "email" ? "border-primary-500/50 bg-primary-500/5 shadow-lg shadow-primary-500/10" : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"}`}>
-                <Mail className={`w-5 h-5 ml-4 transition-colors duration-300 ${focusedField === "email" ? "text-primary-400" : "text-surface-500"}`} />
+              <div className={`relative flex items-center rounded-xl border transition-all duration-300 ${focusedField === "gmail" ? "border-primary-500/50 bg-primary-500/5 shadow-lg shadow-primary-500/10" : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"}`}>
+                <Mail className={`w-5 h-5 ml-4 transition-colors duration-300 ${focusedField === "gmail" ? "text-primary-400" : "text-surface-500"}`} />
                 <input
                   type="email"
-                  name="email"
-                  id="login-email"
-                  value={form.email}
+                  name="gmail"
+                  id="login-gmail"
+                  value={form.gmail}
                   onChange={handleChange}
-                  onFocus={() => setFocusedField("email")}
+                  onFocus={() => setFocusedField("gmail")}
                   onBlur={() => setFocusedField("")}
                   placeholder="nama@email.com"
                   required

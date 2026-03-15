@@ -5,7 +5,7 @@ import api from "../service/api";
 
 export default function Register() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState({ username: "", gmail: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -100,42 +100,42 @@ export default function Register() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Name */}
+            {/* Username */}
             <div className="animate-fade-in delay-100">
-              <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "name" ? "text-primary-400" : "text-surface-400"}`}>
-                Nama Lengkap
+              <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "username" ? "text-primary-400" : "text-surface-400"}`}>
+                Username
               </label>
-              <div className={`relative flex items-center rounded-xl border transition-all duration-300 ${focusedField === "name" ? "border-primary-500/50 bg-primary-500/5 shadow-lg shadow-primary-500/10" : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"}`}>
-                <User className={`w-5 h-5 ml-4 transition-colors duration-300 ${focusedField === "name" ? "text-primary-400" : "text-surface-500"}`} />
+              <div className={`relative flex items-center rounded-xl border transition-all duration-300 ${focusedField === "username" ? "border-primary-500/50 bg-primary-500/5 shadow-lg shadow-primary-500/10" : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"}`}>
+                <User className={`w-5 h-5 ml-4 transition-colors duration-300 ${focusedField === "username" ? "text-primary-400" : "text-surface-500"}`} />
                 <input
                   type="text"
-                  name="name"
-                  id="register-name"
-                  value={form.name}
+                  name="username"
+                  id="register-username"
+                  value={form.username}
                   onChange={handleChange}
-                  onFocus={() => setFocusedField("name")}
+                  onFocus={() => setFocusedField("username")}
                   onBlur={() => setFocusedField("")}
-                  placeholder="Masukkan nama lengkap"
+                  placeholder="Masukkan username"
                   required
                   className="w-full px-4 py-3.5 bg-transparent text-white placeholder-surface-500 outline-none text-sm"
                 />
               </div>
             </div>
 
-            {/* Email */}
+            {/* Gmail */}
             <div className="animate-fade-in delay-200">
-              <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "email" ? "text-primary-400" : "text-surface-400"}`}>
+              <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "gmail" ? "text-primary-400" : "text-surface-400"}`}>
                 Email
               </label>
-              <div className={`relative flex items-center rounded-xl border transition-all duration-300 ${focusedField === "email" ? "border-primary-500/50 bg-primary-500/5 shadow-lg shadow-primary-500/10" : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"}`}>
-                <Mail className={`w-5 h-5 ml-4 transition-colors duration-300 ${focusedField === "email" ? "text-primary-400" : "text-surface-500"}`} />
+              <div className={`relative flex items-center rounded-xl border transition-all duration-300 ${focusedField === "gmail" ? "border-primary-500/50 bg-primary-500/5 shadow-lg shadow-primary-500/10" : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"}`}>
+                <Mail className={`w-5 h-5 ml-4 transition-colors duration-300 ${focusedField === "gmail" ? "text-primary-400" : "text-surface-500"}`} />
                 <input
                   type="email"
-                  name="email"
-                  id="register-email"
-                  value={form.email}
+                  name="gmail"
+                  id="register-gmail"
+                  value={form.gmail}
                   onChange={handleChange}
-                  onFocus={() => setFocusedField("email")}
+                  onFocus={() => setFocusedField("gmail")}
                   onBlur={() => setFocusedField("")}
                   placeholder="nama@email.com"
                   required
