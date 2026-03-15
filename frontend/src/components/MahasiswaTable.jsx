@@ -76,7 +76,7 @@ export default function MahasiswaTable({ mahasiswa, onDetail, onEdit, onDelete, 
                 </button>
               </td>
               <td className="px-6 py-4 text-right">
-                <div className="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center justify-end gap-2 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
                   <button
                     onClick={() => onDetail(mhs)}
                     className="p-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 rounded-lg transition-colors border border-blue-500/20 hover:border-blue-500/30"
