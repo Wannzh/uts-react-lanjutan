@@ -37,21 +37,24 @@ export default function Navbar({ user, setUser }) {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="flex gap-6">
+            <div className="flex gap-8">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
                 return (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+                    className={`relative flex items-center gap-2 text-base font-bold transition-all py-1 ${
                       isActive
                         ? "text-primary-400"
-                        : "text-surface-400 hover:text-white"
+                        : "text-surface-300 hover:text-white"
                     }`}
                   >
-                    {link.icon}
+                    {link.icon && <span className={isActive ? "text-primary-400" : "text-surface-400"}>{link.icon}</span>}
                     {link.name}
+                    {isActive && (
+                      <span className="absolute -bottom-[21px] left-0 w-full h-0.5 bg-primary-500 rounded-full shadow-[0_0_8px_rgba(99,102,241,0.5)]" />
+                    )}
                   </Link>
                 );
               })}

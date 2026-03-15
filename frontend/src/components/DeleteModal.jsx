@@ -15,9 +15,11 @@ export default function DeleteModal({ mhs, onClose, onConfirm, submitting }) {
           <AlertTriangle className="w-8 h-8 text-red-500" />
         </div>
         
-        <h2 className="text-xl font-bold text-white mb-2">Hapus Mahasiswa?</h2>
-        <p className="text-surface-400 text-sm mb-6">
-          Apakah Anda yakin ingin menghapus data mahasiswa <span className="text-white font-medium">"{mhs.name}"</span>? Tindakan ini tidak dapat dibatalkan.
+        <h2 className="text-2xl font-black text-white mb-4 uppercase tracking-tight">Hapus Data?</h2>
+        <p className="text-surface-300 text-lg mb-8 leading-relaxed">
+          Apakah Anda yakin ingin menghapus data mahasiswa bernama <br />
+          <span className="text-white font-bold bg-white/5 px-2 py-0.5 rounded border border-white/10 italic">"{mhs.name}"</span>? <br />
+          <span className="text-red-400 font-semibold mt-2 block">Tindakan ini tidak dapat dibatalkan!</span>
         </p>
 
         <div className="flex items-center gap-3">

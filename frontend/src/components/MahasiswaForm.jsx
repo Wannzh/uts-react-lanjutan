@@ -72,9 +72,15 @@ export default function MahasiswaForm({ mhs, onClose, onSubmit, submitting }) {
 
         {/* Body */}
         <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-5">
+          <div className="bg-primary-500/5 border border-primary-500/10 rounded-xl p-4 mb-2">
+            <p className="text-sm text-primary-200 leading-relaxed font-medium">
+              Silakan lengkapi formulir di bawah ini. Pastikan Nama dan NIM sudah benar sebelum menyimpan data.
+            </p>
+          </div>
+
           {/* Name */}
           <div>
-            <label className="text-xs font-medium text-surface-400 mb-1.5 block">Nama Lengkap</label>
+            <label className="text-sm font-bold text-surface-300 mb-2 block uppercase tracking-wide">Nama Lengkap</label>
             <div className="relative flex items-center rounded-xl border border-white/[0.08] bg-white/[0.02] focus-within:border-primary-500/50 focus-within:bg-primary-500/5 transition-all">
               <User className="w-4 h-4 ml-4 text-surface-500" />
               <input

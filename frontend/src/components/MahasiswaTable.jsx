@@ -45,17 +45,17 @@ export default function MahasiswaTable({ mahasiswa, onDetail, onEdit, onDelete, 
             >
               <td className="px-6 py-4">
                 <div className="flex flex-col">
-                  <span className="font-medium text-white group-hover:text-primary-400 transition-colors">{mhs.name}</span>
-                  <span className="text-xs text-surface-500 mt-0.5 font-mono">{mhs.nim}</span>
+                  <span className="font-semibold text-white group-hover:text-primary-400 transition-colors text-base">{mhs.name}</span>
+                  <span className="text-sm text-surface-400 mt-0.5 font-mono font-medium">{mhs.nim}</span>
                 </div>
               </td>
               <td className="px-6 py-4">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-surface-800 text-surface-300 border border-white/[0.05]">
+                <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-surface-800 text-white border border-white/[0.1] shadow-sm">
                   {mhs.jurusan}
                 </span>
               </td>
               <td className="px-6 py-4">
-                <div className="flex items-center gap-1.5 font-medium">
+                <div className="flex items-center gap-1.5 font-bold text-base">
                   <span className={`${parseFloat(mhs.ipk) >= 3.5 ? 'text-emerald-400' : parseFloat(mhs.ipk) >= 3.0 ? 'text-blue-400' : 'text-amber-400'}`}>
                     {Number(mhs.ipk).toFixed(2)}
                   </span>
@@ -64,39 +64,42 @@ export default function MahasiswaTable({ mahasiswa, onDetail, onEdit, onDelete, 
               <td className="px-6 py-4">
                 <button
                   onClick={() => onToggleStatus(mhs.id, mhs.isactive)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-medium transition-all ${
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border text-xs font-bold transition-all shadow-sm ${
                     mhs.isactive
-                      ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/30"
-                      : "bg-red-500/10 text-red-400 border-red-500/20 hover:bg-red-500/20 hover:border-red-500/30"
+                      ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20 hover:border-emerald-500/40"
+                      : "bg-red-500/10 text-red-400 border-red-500/30 hover:bg-red-500/20 hover:border-red-500/40"
                   }`}
                   title={`Klik untuk ubah menjadi ${mhs.isactive ? 'Inactive' : 'Active'}`}
                 >
-                  {mhs.isactive ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />}
-                  {mhs.isactive ? "Active" : "Inactive"}
+                  {mhs.isactive ? <CheckCircle2 className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+                  {mhs.isactive ? "Aktif" : "Non-Aktif"}
                 </button>
               </td>
               <td className="px-6 py-4 text-right">
-                <div className="flex items-center justify-end gap-2 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex items-center justify-end gap-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                   <button
                     onClick={() => onDetail(mhs)}
-                    className="p-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 rounded-lg transition-colors border border-blue-500/20 hover:border-blue-500/30"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 rounded-xl transition-all border border-blue-500/20 hover:border-blue-500/40 text-[11px] font-bold uppercase tracking-wider shadow-sm"
                     title="Detail Mahasiswa"
                   >
                     <Eye className="w-4 h-4" />
+                    <span>Detail</span>
                   </button>
                   <button
                     onClick={() => onEdit(mhs)}
-                    className="p-2 bg-surface-800 hover:bg-surface-700 text-surface-300 hover:text-white rounded-lg transition-colors border border-white/[0.05] hover:border-white/[0.1]"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-surface-800 hover:bg-surface-700 text-white hover:text-primary-400 rounded-xl transition-all border border-white/[0.1] hover:border-primary-500/20 text-[11px] font-bold uppercase tracking-wider shadow-sm"
                     title="Edit Data"
                   >
                     <Edit2 className="w-4 h-4" />
+                    <span>Edit</span>
                   </button>
                   <button
                     onClick={() => onDelete(mhs)}
-                    className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 rounded-lg transition-colors border border-red-500/20 hover:border-red-500/30"
+                    className="flex items-center gap-1.5 px-3 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 rounded-xl transition-all border border-red-500/20 hover:border-red-500/40 text-[11px] font-bold uppercase tracking-wider shadow-sm"
                     title="Hapus Data"
                   >
                     <Trash2 className="w-4 h-4" />
+                    <span>Hapus</span>
                   </button>
                 </div>
               </td>
