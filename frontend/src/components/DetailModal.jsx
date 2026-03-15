@@ -1,4 +1,4 @@
-import { X, User, Hash, GraduationCap, Award, Calendar, Activity, Trophy } from "lucide-react";
+import { X, User, Hash, GraduationCap, Award, Activity, Trophy } from "lucide-react";
 
 export default function DetailModal({ mhs, onClose }) {
   if (!mhs) return null;
@@ -73,18 +73,6 @@ export default function DetailModal({ mhs, onClose }) {
                   {mhs.isactive ? "Active" : "Inactive"}
                 </span>
               </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-surface-800/50 border border-white/[0.05]">
-              <div className="flex items-center gap-2 mb-1.5">
-                <Calendar className="w-4 h-4 text-surface-400" />
-                <span className="text-xs font-medium text-surface-400">Dibuat</span>
-              </div>
-              <p className="text-sm text-surface-300">
-                {mhs.created_at ? new Date(mhs.created_at).toLocaleDateString("id-ID", {
-                  day: 'numeric', month: 'long', year: 'numeric'
-                }) : "Tidak diketahui"}
-              </p>
             </div>
           </div>
         </div>
