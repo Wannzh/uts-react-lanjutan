@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Search } from "lucide-react";
+import { Plus, Search, CheckCircle2, XCircle, Award, Trophy } from "lucide-react";
 import api from "../service/api";
 import { toast } from "react-hot-toast";
 import MahasiswaTable from "../components/MahasiswaTable";
@@ -45,6 +45,49 @@ export default function MahasiswaList() {
     m.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
     m.nim.includes(searchQuery)
   );
+
+  // Statistics Calculation
+  const totalActive = mahasiswa.filter(m => m.isactive).length;
+  const totalInactive = mahasiswa.length - totalActive;
+  const avgIpk = mahasiswa.length > 0 
+    ? (mahasiswa.reduce((acc, m) => acc + Number(m.ipk), 0) / mahasiswa.length).toFixed(2)
+    : "0.00";
+  const totalCumLaude = mahasiswa.filter(m => Number(m.ipk) >= 3.51).length;
+
+  const statCards = [
+    {
+      title: "Mahasiswa Aktif",
+      value: totalActive,
+      icon: <CheckCircle2 className="w-6 h-6" />,
+      color: "from-emerald-500 to-emerald-600",
+      bgContent: "bg-emerald-500/10",
+      textColor: "text-emerald-400"
+    },
+    {
+      title: "Mahasiswa Non-Aktif",
+      value: totalInactive,
+      icon: <XCircle className="w-6 h-6" />,
+      color: "from-red-500 to-red-600",
+      bgContent: "bg-red-500/10",
+      textColor: "text-red-400"
+    },
+    {
+      title: "Rata-rata IPK",
+      value: avgIpk,
+      icon: <Award className="w-6 h-6" />,
+      color: "from-blue-500 to-blue-600",
+      bgContent: "bg-blue-500/10",
+      textColor: "text-blue-400"
+    },
+    {
+      title: "Cum Laude",
+      value: totalCumLaude,
+      icon: <Trophy className="w-6 h-6" />,
+      color: "from-amber-500 to-amber-600",
+      bgContent: "bg-amber-500/10",
+      textColor: "text-amber-400"
+    }
+  ];
 
   // Handlers for Detail
   const handleOpenDetail = (data) => {
@@ -135,6 +178,36 @@ export default function MahasiswaList() {
           <Plus className="w-5 h-5" />
           Tambah Mahasiswa
         </button>
+      </div>
+
+      {/* Statistics Cards */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pb-4">
+        {statCards.map((stat, idx) => (
+          <div 
+            key={idx}
+            className="relative overflow-hidden rounded-2xl bg-white/[0.02] border border-white/[0.05] p-5 hover:border-white/[0.1] transition-all duration-300 animate-slide-up"
+            style={{ animationDelay: `${(idx + 1) * 100}ms` }}
+          >
+            <div className="flex flex-col gap-3 relative z-10">
+              <div className="flex justify-between items-start">
+                <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.color} shadow-lg`}>
+                  <div className="text-white">
+                    {stat.icon}
+                  </div>
+                </div>
+                {loading ? (
+                  <span className="w-12 h-8 block bg-white/[0.05] rounded animate-pulse" />
+                ) : (
+                  <h3 className="text-2xl font-bold text-white">{stat.value}</h3>
+                )}
+              </div>
+              <p className="text-surface-400 text-xs font-medium">{stat.title}</p>
+            </div>
+            
+            {/* Background glow for card */}
+            <div className={`absolute -bottom-8 -right-8 w-24 h-24 ${stat.bgContent} rounded-full blur-2xl`} />
+          </div>
+        ))}
       </div>
 
       {/* Search Bar */}
