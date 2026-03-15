@@ -1,4 +1,4 @@
-import { X, User, Hash, GraduationCap, Award, Calendar, Activity } from "lucide-react";
+import { X, User, Hash, GraduationCap, Award, Calendar, Activity, Trophy } from "lucide-react";
 
 export default function DetailModal({ mhs, onClose }) {
   if (!mhs) return null;
@@ -31,8 +31,16 @@ export default function DetailModal({ mhs, onClose }) {
               {mhs.name.charAt(0).toUpperCase()}
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">{mhs.name}</h3>
-              <p className="text-surface-400 text-sm font-mono">{mhs.nim}</p>
+              <div className="flex items-center gap-3">
+                <h3 className="text-xl font-bold text-white">{mhs.name}</h3>
+                {Number(mhs.ipk) >= 3.51 && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                    <Trophy className="w-3 h-3" />
+                    Cum Laude
+                  </span>
+                )}
+              </div>
+              <p className="text-surface-400 text-sm font-mono mt-0.5">{mhs.nim}</p>
             </div>
           </div>
 
