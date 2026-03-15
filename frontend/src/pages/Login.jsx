@@ -71,7 +71,7 @@ export default function Login() {
             {/* Gmail */}
             <div className={`group relative animate-fade-in delay-100`}>
               <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "gmail" ? "text-primary-400" : "text-surface-400"}`}>
-                Email
+                Alamat Email
               </label>
               <div className={`relative flex items-center rounded-xl border transition-all duration-300 ${focusedField === "gmail" ? "border-primary-500/50 bg-primary-500/5 shadow-lg shadow-primary-500/10" : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"}`}>
                 <Mail className={`w-5 h-5 ml-4 transition-colors duration-300 ${focusedField === "gmail" ? "text-primary-400" : "text-surface-500"}`} />
@@ -93,7 +93,7 @@ export default function Login() {
             {/* Password */}
             <div className={`group relative animate-fade-in delay-200`}>
               <label className={`text-xs font-medium mb-1.5 block transition-colors duration-300 ${focusedField === "password" ? "text-primary-400" : "text-surface-400"}`}>
-                Password
+                Kata Sandi
               </label>
               <div className={`relative flex items-center rounded-xl border transition-all duration-300 ${focusedField === "password" ? "border-primary-500/50 bg-primary-500/5 shadow-lg shadow-primary-500/10" : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"}`}>
                 <Lock className={`w-5 h-5 ml-4 transition-colors duration-300 ${focusedField === "password" ? "text-primary-400" : "text-surface-500"}`} />
@@ -105,7 +105,7 @@ export default function Login() {
                   onChange={handleChange}
                   onFocus={() => setFocusedField("password")}
                   onBlur={() => setFocusedField("")}
-                  placeholder="Masukkan password"
+                  placeholder="Masukkan kata sandi"
                   required
                   className="w-full px-4 py-3 bg-transparent text-white placeholder-surface-500 outline-none text-sm"
                 />

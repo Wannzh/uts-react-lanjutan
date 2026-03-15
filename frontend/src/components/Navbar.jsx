@@ -20,10 +20,10 @@ export default function Navbar({ user, setUser }) {
   };
 
   const navLinks = [
-    { name: "Home", path: "/", icon: <LayoutDashboard className="w-4 h-4" /> },
+    { name: "Beranda", path: "/", icon: <LayoutDashboard className="w-4 h-4" /> },
     { name: "Mahasiswa", path: "/mahasiswa", icon: <Users className="w-4 h-4" /> },
-    { name: "About", path: "/about", icon: <Info className="w-4 h-4" /> },
-    { name: "Contact", path: "/contact", icon: <Mail className="w-4 h-4" /> },
+    { name: "Tentang", path: "/about", icon: <Info className="w-4 h-4" /> },
+    { name: "Kontak", path: "/contact", icon: <Mail className="w-4 h-4" /> },
   ];
 
   return (
@@ -71,7 +71,7 @@ export default function Navbar({ user, setUser }) {
               <button
                 onClick={handleLogout}
                 className="p-2 text-surface-400 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-colors"
-                title="Logout"
+                title="Keluar"
               >
                 <LogOut className="w-5 h-5" />
               </button>
@@ -131,7 +131,7 @@ export default function Navbar({ user, setUser }) {
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-400 hover:bg-red-500/10 transition-colors mt-2"
             >
               <LogOut className="w-4 h-4" />
-              Logout
+              Keluar
             </button>
           </div>
         </div>

@@ -70,7 +70,7 @@ export default function DetailModal({ mhs, onClose }) {
                 <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                   mhs.isactive ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" : "bg-red-500/10 text-red-400 border border-red-500/20"
                 }`}>
-                  {mhs.isactive ? "Active" : "Inactive"}
+                  {mhs.isactive ? "Aktif" : "Non-Aktif"}
                 </span>
               </div>
             </div>

@@ -13,7 +13,7 @@ export default function About() {
       items: ["Node.js", "Express 5", "JSON Web Tokens (JWT)", "Cookie Parser"]
     },
     {
-      category: "Database & Security",
+      category: "Basis Data & Keamanan",
       icon: <Database className="w-5 h-5 text-purple-400" />,
       items: ["PostgreSQL", "Argon2 Hashing", "HTTP-Only Cookies", "CORS"]
     }

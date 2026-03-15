@@ -69,10 +69,10 @@ export default function MahasiswaTable({ mahasiswa, onDetail, onEdit, onDelete, 
                       ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20 hover:border-emerald-500/40"
                       : "bg-red-500/10 text-red-400 border-red-500/30 hover:bg-red-500/20 hover:border-red-500/40"
                   }`}
-                  title={`Klik untuk ubah menjadi ${mhs.isactive ? 'Inactive' : 'Active'}`}
+                  title={`Klik untuk ubah menjadi ${mhs.isactive ? 'Non-Aktif' : 'Aktif'}`}
                 >
                   {mhs.isactive ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />}
-                  {mhs.isactive ? "Active" : "Inactive"}
+                  {mhs.isactive ? "Aktif" : "Non-Aktif"}
                 </button>
               </td>
               <td className="px-6 py-4 text-right">
@@ -91,7 +91,7 @@ export default function MahasiswaTable({ mahasiswa, onDetail, onEdit, onDelete, 
                     title="Edit Data"
                   >
                     <Edit2 className="w-4 h-4" />
-                    <span>Edit</span>
+                    <span>Ubah</span>
                   </button>
                   <button
                     onClick={() => onDelete(mhs)}

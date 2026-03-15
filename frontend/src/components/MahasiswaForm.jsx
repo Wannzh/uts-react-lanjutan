@@ -162,8 +162,8 @@ export default function MahasiswaForm({ mhs, onClose, onSubmit, submitting }) {
                 onChange={handleChange}
                 className="w-full px-3 py-3 bg-transparent text-white outline-none text-sm appearance-none"
               >
-                <option value={true} className="bg-surface-800">Active</option>
-                <option value={false} className="bg-surface-800">Inactive</option>
+                <option value={true} className="bg-surface-800">Aktif</option>
+                <option value={false} className="bg-surface-800">Non-Aktif</option>
               </select>
             </div>
           </div>

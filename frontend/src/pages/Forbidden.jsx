@@ -33,7 +33,7 @@ export default function Forbidden() {
             className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-medium transition-colors shadow-lg shadow-primary-500/25"
           >
             <Home className="w-4 h-4" />
-            Halaman Login
+            Halaman Masuk
           </Link>
         </div>
       </div>

@@ -74,7 +74,7 @@ export default function Home() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-primary-200 text-sm font-medium mb-6 animate-fade-in delay-100">
               <SparkleIcon />
-              Welcome to MhsDev Dashboard
+              Selamat datang di Dashboard MhsDev
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-slide-up delay-200">

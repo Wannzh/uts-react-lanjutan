@@ -165,7 +165,7 @@ export default function MahasiswaList() {
       setMahasiswa(prev => prev.map(m => m.id === id ? { ...m, isactive: !currentStatus } : m));
       
       await api.patch(`/api/mahasiswa/${id}/status`, { isActive: !currentStatus });
-      toast.success(`Status berhasil diubah menjadi ${!currentStatus ? 'Active' : 'Inactive'}!`);
+      toast.success(`Status berhasil diubah menjadi ${!currentStatus ? 'Aktif' : 'Non-Aktif'}!`);
     } catch (error) {
       console.error("Failed to toggle status", error);
       toast.error("Gagal mengubah status!");
