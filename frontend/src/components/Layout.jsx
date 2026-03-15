@@ -18,7 +18,6 @@ export default function Layout() {
         setUser(res.data.user);
       } catch (error) {
         console.error("Auth check failed:", error);
-        // If getting /me fails, they are not logged in. Redirect if it's not a public route.
         if (location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/forbidden") {
           navigate("/forbidden");
         }
@@ -29,6 +28,11 @@ export default function Layout() {
 
     fetchUser();
   }, [navigate, location.pathname]);
+
+  // Scroll to top on every route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   if (loading) {
     return (
