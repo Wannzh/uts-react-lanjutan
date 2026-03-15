@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Search, CheckCircle2, XCircle, Award, Trophy } from "lucide-react";
+import { Plus, Search, CheckCircle2, XCircle, Award, Trophy, Users } from "lucide-react";
 import api from "../service/api";
 import { toast } from "react-hot-toast";
 import MahasiswaTable from "../components/MahasiswaTable";
@@ -47,14 +47,23 @@ export default function MahasiswaList() {
   );
 
   // Statistics Calculation
+  const totalMahasiswa = mahasiswa.length;
   const totalActive = mahasiswa.filter(m => m.isactive).length;
-  const totalInactive = mahasiswa.length - totalActive;
-  const avgIpk = mahasiswa.length > 0 
-    ? (mahasiswa.reduce((acc, m) => acc + Number(m.ipk), 0) / mahasiswa.length).toFixed(2)
+  const totalInactive = totalMahasiswa - totalActive;
+  const avgIpk = totalMahasiswa > 0 
+    ? (mahasiswa.reduce((acc, m) => acc + Number(m.ipk), 0) / totalMahasiswa).toFixed(2)
     : "0.00";
   const totalCumLaude = mahasiswa.filter(m => Number(m.ipk) >= 3.51).length;
 
   const statCards = [
+    {
+      title: "Total Mahasiswa",
+      value: totalMahasiswa,
+      icon: <Users className="w-6 h-6" />,
+      color: "from-primary-500 to-primary-600",
+      bgContent: "bg-primary-500/10",
+      textColor: "text-primary-400"
+    },
     {
       title: "Mahasiswa Aktif",
       value: totalActive,
@@ -181,7 +190,7 @@ export default function MahasiswaList() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pb-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pb-4">
         {statCards.map((stat, idx) => (
           <div 
             key={idx}
