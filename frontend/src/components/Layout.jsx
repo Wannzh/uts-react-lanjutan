@@ -18,8 +18,8 @@ export default function Layout() {
       } catch (error) {
         console.error("Auth check failed:", error);
         // If getting /me fails, they are not logged in. Redirect if it's not a public route.
-        if (location.pathname !== "/login" && location.pathname !== "/register") {
-          navigate("/login");
+        if (location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/forbidden") {
+          navigate("/forbidden");
         }
       } finally {
         setLoading(false);
@@ -40,8 +40,8 @@ export default function Layout() {
   // If we are on public routes but somehow logged in, optionally redirect them to home
   // (We handle this mainly in router/auth guard, but placing it here is also fine)
   
-  // If not logged in and trying to access protected route
-  if (!user && location.pathname !== "/login" && location.pathname !== "/register") {
+  // If not logged in and trying to access protected route or non-public route
+  if (!user && location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/forbidden") {
     return null; // Will be redirected by useEffect
   }
 
