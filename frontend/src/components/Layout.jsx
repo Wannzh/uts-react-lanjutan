@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import api from "../service/api";
 
 export default function Layout() {
@@ -51,6 +52,7 @@ export default function Layout() {
       <main className="flex-1 overflow-x-hidden pt-6 pb-12">
         <Outlet context={{ user }} />
       </main>
+      <Footer />
     </div>
   );
 }
