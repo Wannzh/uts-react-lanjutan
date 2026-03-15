@@ -8,10 +8,10 @@ const router = Router();
 
 // POST /api/auth/register
 router.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, gmail, password } = req.body;
 
   // Validasi input
-  if (!name || !email || !password) {
+  if (!username || !gmail || !password) {
     return res.status(400).json({ message: "Semua field harus diisi." });
   }
 
@@ -22,8 +22,8 @@ router.post("/register", async (req, res) => {
   try {
     // Cek apakah email sudah terdaftar
     const existingUser = await pool.query(
-      "SELECT id FROM users WHERE email = $1",
-      [email]
+      "SELECT id FROM users WHERE gmail = $1",
+      [gmail]
     );
 
     if (existingUser.rows.length > 0) {
@@ -35,8 +35,8 @@ router.post("/register", async (req, res) => {
 
     // Insert user baru
     const result = await pool.query(
-      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, created_at",
-      [name, email, hashedPassword]
+      "INSERT INTO users (username, gmail, password) VALUES ($1, $2, $3) RETURNING id, username, gmail",
+      [username, gmail, hashedPassword]
     );
 
     const newUser = result.rows[0];
@@ -45,9 +45,8 @@ router.post("/register", async (req, res) => {
       message: "Registrasi berhasil!",
       user: {
         id: newUser.id,
-        name: newUser.name,
-        email: newUser.email,
-        created_at: newUser.created_at,
+        username: newUser.username,
+        gmail: newUser.gmail,
       },
     });
   } catch (error) {
@@ -58,20 +57,20 @@ router.post("/register", async (req, res) => {
 
 // POST /api/auth/login
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { gmail, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ message: "Email dan password harus diisi." });
+  if (!gmail || !password) {
+    return res.status(400).json({ message: "Gmail dan password harus diisi." });
   }
 
   try {
-    // Cari user berdasarkan email
-    const result = await pool.query("SELECT * FROM users WHERE email = $1", [
-      email,
+    // Cari user berdasarkan gmail
+    const result = await pool.query("SELECT * FROM users WHERE gmail = $1", [
+      gmail,
     ]);
 
     if (result.rows.length === 0) {
-      return res.status(401).json({ message: "Email atau password salah." });
+      return res.status(401).json({ message: "Gmail atau password salah." });
     }
 
     const user = result.rows[0];
@@ -80,12 +79,12 @@ router.post("/login", async (req, res) => {
     const isPasswordValid = await argon2.verify(user.password, password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Email atau password salah." });
+      return res.status(401).json({ message: "Gmail atau password salah." });
     }
 
     // Generate JWT token
     const token = jwt.sign(
-      { id: user.id, name: user.name, email: user.email },
+      { id: user.id, username: user.username, gmail: user.gmail },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
@@ -102,8 +101,8 @@ router.post("/login", async (req, res) => {
       message: "Login berhasil!",
       user: {
         id: user.id,
-        name: user.name,
-        email: user.email,
+        username: user.username,
+        gmail: user.gmail,
       },
     });
   } catch (error) {
@@ -127,7 +126,7 @@ router.post("/logout", (req, res) => {
 router.get("/me", authMiddleware, async (req, res) => {
   try {
     const result = await pool.query(
-      "SELECT id, name, email, created_at FROM users WHERE id = $1",
+      "SELECT id, username, gmail FROM users WHERE id = $1",
       [req.user.id]
     );
 
