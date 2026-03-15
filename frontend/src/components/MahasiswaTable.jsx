@@ -45,8 +45,8 @@ export default function MahasiswaTable({ mahasiswa, onDetail, onEdit, onDelete, 
             >
               <td className="px-6 py-4">
                 <div className="flex flex-col">
-                  <span className="font-semibold text-white group-hover:text-primary-400 transition-colors text-base">{mhs.name}</span>
-                  <span className="text-sm text-surface-400 mt-0.5 font-mono font-medium">{mhs.nim}</span>
+                  <span className="font-medium text-white group-hover:text-primary-400 transition-colors">{mhs.name}</span>
+                  <span className="text-xs text-surface-500 mt-0.5 font-mono">{mhs.nim}</span>
                 </div>
               </td>
               <td className="px-6 py-4">
@@ -71,12 +71,12 @@ export default function MahasiswaTable({ mahasiswa, onDetail, onEdit, onDelete, 
                   }`}
                   title={`Klik untuk ubah menjadi ${mhs.isactive ? 'Inactive' : 'Active'}`}
                 >
-                  {mhs.isactive ? <CheckCircle2 className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
-                  {mhs.isactive ? "Aktif" : "Non-Aktif"}
+                  {mhs.isactive ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />}
+                  {mhs.isactive ? "Active" : "Inactive"}
                 </button>
               </td>
               <td className="px-6 py-4 text-right">
-                <div className="flex items-center justify-end gap-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex items-center justify-end gap-2 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
                   <button
                     onClick={() => onDetail(mhs)}
                     className="flex items-center gap-1.5 px-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 rounded-xl transition-all border border-blue-500/20 hover:border-blue-500/40 text-[11px] font-bold uppercase tracking-wider shadow-sm"

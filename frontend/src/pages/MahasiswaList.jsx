@@ -11,6 +11,7 @@ export default function MahasiswaList() {
   const [mahasiswa, setMahasiswa] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all"); // 'all', 'active', 'inactive'
   
   const [showDetail, setShowDetail] = useState(false);
   const [detailData, setDetailData] = useState(null);
@@ -40,11 +41,12 @@ export default function MahasiswaList() {
     fetchMahasiswa();
   }, []);
 
-  // Filter data based on search
-  const filteredData = mahasiswa.filter(m => 
-    m.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    m.nim.includes(searchQuery)
-  );
+  // Filter data based on search and status
+  const filteredData = mahasiswa.filter(m => {
+    const matchesSearch = m.name.toLowerCase().includes(searchQuery.toLowerCase()) || m.nim.includes(searchQuery);
+    const matchesStatus = statusFilter === "all" ? true : statusFilter === "active" ? m.isactive : !m.isactive;
+    return matchesSearch && matchesStatus;
+  });
 
   // Statistics Calculation
   const totalMahasiswa = mahasiswa.length;
@@ -219,16 +221,51 @@ export default function MahasiswaList() {
         ))}
       </div>
 
-      {/* Search Bar */}
-      <div className="relative max-w-md">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-surface-500" />
-        <input
-          type="text"
-          placeholder="Cari berdasarkan nama atau NIM..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-11 pr-4 py-2.5 bg-surface-900/50 border border-white/[0.08] focus:border-primary-500/50 rounded-xl text-sm text-white focus:bg-primary-500/5 outline-none transition-all placeholder-surface-500 backdrop-blur-sm"
-        />
+      {/* Search & Filter Bar */}
+      <div className="flex flex-col md:flex-row gap-4 items-center">
+        <div className="relative flex-1 w-full max-w-md">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-surface-500" />
+          <input
+            type="text"
+            placeholder="Cari berdasarkan nama atau NIM..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-11 pr-4 py-2.5 bg-surface-900/50 border border-white/[0.08] focus:border-primary-500/50 rounded-xl text-sm text-white focus:bg-primary-500/5 outline-none transition-all placeholder-surface-500 backdrop-blur-sm"
+          />
+        </div>
+
+        <div className="flex items-center gap-2 bg-surface-900/50 border border-white/[0.08] p-1 rounded-xl backdrop-blur-sm">
+          <button
+            onClick={() => setStatusFilter("all")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              statusFilter === "all" 
+                ? "bg-primary-500 text-white shadow-lg shadow-primary-500/20" 
+                : "text-surface-400 hover:text-white hover:bg-white/5"
+            }`}
+          >
+            Semua
+          </button>
+          <button
+            onClick={() => setStatusFilter("active")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              statusFilter === "active" 
+                ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/20" 
+                : "text-surface-400 hover:text-emerald-400 hover:bg-emerald-400/5"
+            }`}
+          >
+            Aktif
+          </button>
+          <button
+            onClick={() => setStatusFilter("inactive")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              statusFilter === "inactive" 
+                ? "bg-red-500 text-white shadow-lg shadow-red-500/20" 
+                : "text-surface-400 hover:text-red-400 hover:bg-red-400/5"
+            }`}
+          >
+            Non-Aktif
+          </button>
+        </div>
       </div>
 
       {/* Main Table */}
